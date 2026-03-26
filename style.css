@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Lato:wght@300;400;700;900&family=Merriweather+Sans:wght@400;500;600;700&display=swap');
 
 :root {
   /* Dynamic, modern color palette inspired by nature and tech */
@@ -17,8 +17,9 @@
   --success: hsl(150, 78%, 40%);
   --warning: hsl(35, 92%, 55%);
   
-  --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Lato', 'Segoe UI', sans-serif;
+  --font-ui: 'Merriweather Sans', sans-serif;
   
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -59,8 +60,9 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
 a {
@@ -70,7 +72,7 @@ a {
 }
 
 button {
-  font-family: var(--font-heading);
+  font-family: var(--font-ui);
   cursor: pointer;
   border: none;
   background: none;
@@ -345,6 +347,7 @@ button {
   font-weight: 700;
   margin-bottom: 2rem;
   color: var(--text-main);
+  letter-spacing: 0.01em;
 }
 
 .sidebar-logo i {
