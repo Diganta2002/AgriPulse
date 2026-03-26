@@ -211,9 +211,14 @@ const farmerViews = {
         </div>
         <div class="form-section glass-panel" style="padding: 2rem; margin-bottom: 2rem;">
             <h3 style="margin-bottom: 1rem;">Current Crop: Wheat (Week 4)</h3>
-            <div class="file-upload" onclick="simulateDiseaseUpload()">
+            <input type="file" id="disease-image-upload" accept="image/*" style="display: none;" onchange="handleDiseaseImageUpload(event)">
+            <div class="file-upload" onclick="document.getElementById('disease-image-upload').click()">
                 <i class="ph ph-camera-plus"></i>
-                <p>Upload Real-time Image (GPS tagged)</p>
+                <p>Upload Real-time Image (Upload File)</p>
+            </div>
+            
+            <div id="image-preview-container" style="text-align: center; margin-top: 1.5rem; display: none;">
+                <img id="disease-image-preview" src="" alt="Preview" style="max-width: 100%; max-height: 300px; border-radius: var(--radius-md); border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
             </div>
             
             <div id="disease-result-container"></div>
@@ -303,7 +308,7 @@ function switchFarmerTab(tab) {
     // Update sidebar
     const navItems = document.querySelectorAll('#view-farmer .nav-item');
     navItems.forEach(item => item.classList.remove('active'));
-    document.querySelector(\`#view-farmer .nav-item[onclick="switchFarmerTab('\${tab}')"]\`).classList.add('active');
+    document.querySelector(`#view-farmer .nav-item[onclick="switchFarmerTab('${tab}')"]`).classList.add('active');
     
     // Render content
     document.getElementById('farmer-content').innerHTML = farmerViews[tab]();
@@ -319,46 +324,57 @@ function runCropAI() {
         const best = crops[Math.floor(Math.random() * crops.length)];
         const panel = document.getElementById('ai-result-panel');
         
-        panel.innerHTML = \`
+        panel.innerHTML = `
             <div class="animate-fade-in" style="text-align: center;">
                 <div style="font-size: 4rem; color: var(--success); margin-bottom: 1rem;">
                     <i class="ph-fill ph-plant"></i>
                 </div>
                 <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--success);">Highly Recommended</h3>
-                <h2 style="font-size: 2.5rem; font-weight: 700; color: var(--text-main); font-family: var(--font-heading); margin-bottom: 1rem;">\${best}</h2>
-                <p style="color: var(--text-muted);">Based on your NPK levels and pH balance, \${best} is expected to yield the highest outcome in your region.</p>
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: var(--text-main); font-family: var(--font-heading); margin-bottom: 1rem;">${best}</h2>
+                <p style="color: var(--text-muted);">Based on your NPK levels and pH balance, ${best} is expected to yield the highest outcome in your region.</p>
             </div>
-        \`;
+        `;
         
         btn.innerHTML = '<i class="ph ph-sparkle"></i> Analyze Soil';
         btn.disabled = false;
     }, 1500);
 }
 
-function simulateDiseaseUpload() {
+function handleDiseaseImageUpload(event) {
+    const file = event.target.files[0];
+    if(!file) return;
+
+    // Show image preview
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('image-preview-container').style.display = 'block';
+        document.getElementById('disease-image-preview').src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+
     const container = document.getElementById('disease-result-container');
     const logs = document.getElementById('lifecycle-logs');
-    container.innerHTML = \`<div style="color: var(--primary); text-align: center; margin-top: 2rem;"><i class="ph ph-spinner ph-spin" style="font-size: 2rem;"></i><br>AI Vision Model Analyzing...</div>\`;
+    container.innerHTML = `<div style="color: var(--primary); text-align: center; margin-top: 2rem;"><i class="ph ph-spinner ph-spin" style="font-size: 2rem;"></i><br>AI Vision Model Analyzing...</div>`;
     
     setTimeout(() => {
         const isHealthy = Math.random() > 0.5;
         if(isHealthy) {
-            container.innerHTML = \`
+            container.innerHTML = `
                 <div class="disease-result healthy animate-fade-in">
                     <h3 style="color: var(--success); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;"><i class="ph-fill ph-check-circle"></i> Crop is Healthy</h3>
                     <p style="color: var(--text-main);">No significant diseases detected. Continue regular monitoring.</p>
                 </div>
-            \`;
-            logs.innerHTML = \`
+            `;
+            logs.innerHTML = `
                 <tr>
                     <td>Just Now</td>
                     <td>Wheat</td>
                     <td>Image Scan: Healthy</td>
                     <td><span class="badge badge-success">Healthy</span></td>
                 </tr>
-            \` + logs.innerHTML;
+            ` + logs.innerHTML;
         } else {
-            container.innerHTML = \`
+            container.innerHTML = `
                 <div class="disease-result detected animate-fade-in">
                     <h3 style="color: var(--danger); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;"><i class="ph-fill ph-warning-circle"></i> Leaf Rust Detected</h3>
                     <p style="color: var(--text-main); margin-bottom: 1rem;">Our AI model detected early signs of Leaf Rust. Confidence: 89%.</p>
@@ -367,15 +383,15 @@ function simulateDiseaseUpload() {
                         <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 0.5rem;">Apply Propiconazole 25% EC at 1 ml/litre of water immediately. Isolate affected area if possible.</p>
                     </div>
                 </div>
-            \`;
-            logs.innerHTML = \`
+            `;
+            logs.innerHTML = `
                 <tr>
                     <td>Just Now</td>
                     <td>Wheat</td>
                     <td>Image Scan: Leaf Rust</td>
                     <td><span class="badge badge-danger">Detected</span></td>
                 </tr>
-            \` + logs.innerHTML;
+            ` + logs.innerHTML;
         }
     }, 2000);
 }
@@ -449,17 +465,17 @@ const adminViews = {
                     </tr>
                 </thead>
                 <tbody>
-                    ${state.farmers.map(f => \`
+                    ${state.farmers.map(f => `
                         <tr>
-                            <td style="font-weight: 500;">\${f.id}</td>
-                            <td>\${f.name}</td>
-                            <td>\${f.phone}</td>
-                            <td><span class="badge badge-\${f.status === 'Verified' ? 'success' : 'warning'}">\${f.status}</span></td>
+                            <td style="font-weight: 500;">${f.id}</td>
+                            <td>${f.name}</td>
+                            <td>${f.phone}</td>
+                            <td><span class="badge badge-${f.status === 'Verified' ? 'success' : 'warning'}">${f.status}</span></td>
                             <td>
-                                \${f.status !== 'Verified' ? \`<button class="btn btn-primary" style="padding: 0.25rem 0.75rem; font-size: 0.875rem;" onclick="verifyFarmer('\${f.id}')">Approve</button>\` : \`<button class="btn btn-outline" style="padding: 0.25rem 0.75rem; font-size: 0.875rem;">View Profile</button>\`}
+                                ${f.status !== 'Verified' ? `<button class="btn btn-primary" style="padding: 0.25rem 0.75rem; font-size: 0.875rem;" onclick="verifyFarmer('${f.id}')">Approve</button>` : `<button class="btn btn-outline" style="padding: 0.25rem 0.75rem; font-size: 0.875rem;">View Profile</button>`}
                             </td>
                         </tr>
-                    \`).join('')}
+                    `).join('')}
                 </tbody>
             </table>
         </div>
@@ -470,12 +486,12 @@ const adminViews = {
             <p style="color: var(--text-muted)">Review uploaded land records and GPS mappings against physical database.</p>
         </div>
         <div class="grid-cards" style="grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));">
-            ${state.farmers.filter(f => f.landStatus !== 'Verified').map(f => \`
+            ${state.farmers.filter(f => f.landStatus !== 'Verified').map(f => `
                 <div class="glass-panel" style="padding: 2rem;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; align-items: start;">
                         <div>
-                            <h3 style="margin-bottom: 0.25rem;">\${f.name}</h3>
-                            <p style="color: var(--text-muted); font-size: 0.875rem;">ID: \${f.id} | Docs: 2 Files PDF</p>
+                            <h3 style="margin-bottom: 0.25rem;">${f.name}</h3>
+                            <p style="color: var(--text-muted); font-size: 0.875rem;">ID: ${f.id} | Docs: 2 Files PDF</p>
                         </div>
                         <span class="badge badge-warning">Pending</span>
                     </div>
@@ -489,7 +505,7 @@ const adminViews = {
                         <button class="btn btn-outline" style="flex: 1; border-color: var(--danger); color: var(--danger);"><i class="ph ph-x"></i> Reject</button>
                     </div>
                 </div>
-            \`).join('') || '<div style="padding: 2rem; color: var(--text-muted);">No pending verifications.</div>'}
+            `).join('') || '<div style="padding: 2rem; color: var(--text-muted);">No pending verifications.</div>'}
         </div>
     `,
     monitoring: () => `
@@ -562,7 +578,7 @@ function switchAdminTab(tab) {
     currentAdminTab = tab;
     const navItems = document.querySelectorAll('#view-admin .nav-item');
     navItems.forEach(item => item.classList.remove('active'));
-    document.querySelector(\`#view-admin .nav-item[onclick="switchAdminTab('\${tab}')"]\`).classList.add('active');
+    document.querySelector(`#view-admin .nav-item[onclick="switchAdminTab('${tab}')"]`).classList.add('active');
     
     document.getElementById('admin-content').innerHTML = adminViews[tab]();
 }
@@ -583,19 +599,19 @@ function renderPublicMarketplace() {
     
     grid.innerHTML = verifiedCrops.map(c => {
         const icon = icons[Math.floor(Math.random() * icons.length)];
-        return \`
+        return `
         <div class="product-card glass-panel animate-fade-in">
             <div class="product-img">
-                <i class="ph \${icon}"></i>
+                <i class="ph ${icon}"></i>
             </div>
             <div class="product-info">
-                <div class="product-title">\${c.name}</div>
-                <div class="product-meta">By \${c.farmer} • \${c.qty}</div>
-                <div class="product-price">\${c.price}</div>
+                <div class="product-title">${c.name}</div>
+                <div class="product-meta">By ${c.farmer} • ${c.qty}</div>
+                <div class="product-price">${c.price}</div>
                 <button class="btn btn-outline" style="width: 100%; border-radius: var(--radius-md);" onclick="alert('Added to cart! Delivery coordinates will be shared shortly.')">Request Purchase</button>
             </div>
         </div>
-    \`}).join('');
+    `}).join('');
 }
 
 // Initialization Check

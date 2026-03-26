@@ -326,13 +326,14 @@ button {
 .sidebar {
   width: 280px;
   background: var(--surface);
-  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
   position: sticky;
   top: 0;
   height: 100vh;
+  box-shadow: var(--shadow-md);
+  z-index: 20;
 }
 
 .sidebar-logo {
@@ -378,7 +379,8 @@ button {
 .nav-item.active {
   background: var(--primary-glow);
   color: var(--primary);
-  border-left: 3px solid var(--primary);
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
 }
 
 .nav-item i {
@@ -394,7 +396,9 @@ button {
 
 .topbar {
   height: 72px;
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -403,6 +407,10 @@ button {
   position: sticky;
   top: 0;
   z-index: 10;
+}
+
+[data-theme='dark'] .topbar {
+  background: rgba(30, 41, 59, 0.7);
 }
 
 .user-profile {
@@ -424,9 +432,12 @@ button {
 }
 
 .content-area {
-  padding: 2rem;
+  padding: 2.5rem;
   flex: 1;
   overflow-y: auto;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 /* Main Dashboard Elements */
