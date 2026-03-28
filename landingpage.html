@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriPulse | Smart Farming Ecosystem - Cultivating the Future</title>
+    <meta name="description" content="AgriPulse connects farmers, buyers, and administrators through AI-powered smart agricultural technology. Crop recommendations, disease detection, and direct marketplace.">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="landing.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo"><i class="ph-fill ph-plant"></i> AgriPulse</a>
+            <div class="nav-links" id="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#stats">Impact</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#cta">Get Started</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-theme" id="theme-btn" onclick="toggleTheme()"><i class="ph ph-moon"></i></button>
+                <a href="index.html" class="btn btn-primary btn-sm">Launch App</a>
+                <button class="nav-toggle" id="nav-toggle" onclick="toggleNav()"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge animate-on-scroll"><i class="ph-fill ph-sparkle"></i> AI-Powered Agriculture Platform</div>
+                <h1 class="hero-title animate-on-scroll">Cultivating the <br>Future with <span class="gradient-text">AgriPulse</span></h1>
+                <p class="hero-subtitle animate-on-scroll">The all-in-one smart farming ecosystem connecting farmers, buyers, and administrators through cutting-edge agricultural technology.</p>
+                <div class="hero-actions animate-on-scroll">
+                    <a href="index.html" class="btn btn-primary btn-lg"><i class="ph ph-rocket-launch"></i> Get Started Free</a>
+                    <a href="#how-it-works" class="btn btn-ghost btn-lg"><i class="ph ph-play-circle"></i> See How It Works</a>
+                </div>
+                <div class="hero-stats animate-on-scroll">
+                    <div class="hero-stat"><strong>10K+</strong><span>Active Farmers</span></div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat"><strong>95%</strong><span>Accuracy AI</span></div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat"><strong>₹2Cr+</strong><span>Revenue Generated</span></div>
+                </div>
+            </div>
+            <div class="hero-visual animate-on-scroll">
+                <div class="hero-image-wrapper">
+                    <img src="hero_bg.png" alt="Smart Agriculture Technology" class="hero-img">
+                    <div class="hero-float-card float-card-1">
+                        <div class="float-card-icon" style="background:hsla(150,78%,40%,0.15);color:hsl(150,78%,40%)"><i class="ph-fill ph-plant"></i></div>
+                        <div><strong>Crop Health</strong><span style="color:hsl(150,78%,40%)">Optimal ✓</span></div>
+                    </div>
+                    <div class="hero-float-card float-card-2">
+                        <div class="float-card-icon" style="background:hsla(210,90%,55%,0.15);color:hsl(210,90%,55%)"><i class="ph-fill ph-drop"></i></div>
+                        <div><strong>Soil Moisture</strong><span style="color:hsl(210,90%,55%)">48% Good</span></div>
+                    </div>
+                    <div class="hero-float-card float-card-3">
+                        <div class="float-card-icon" style="background:hsla(35,92%,55%,0.15);color:hsl(35,92%,55%)"><i class="ph-fill ph-sun"></i></div>
+                        <div><strong>Weather AI</strong><span style="color:hsl(35,92%,55%)">Clear Skies</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <i class="ph ph-caret-double-down"></i>
+        </div>
+    </section>
+
+    <!-- Trusted By / Logos -->
+    <section class="trusted-section">
+        <div class="container">
+            <p class="trusted-label">Trusted by leading agricultural organizations</p>
+            <div class="trusted-logos">
+                <div class="trusted-logo"><i class="ph-fill ph-bank"></i> NABARD</div>
+                <div class="trusted-logo"><i class="ph-fill ph-buildings"></i> ICAR</div>
+                <div class="trusted-logo"><i class="ph-fill ph-leaf"></i> Krishi Vigyan</div>
+                <div class="trusted-logo"><i class="ph-fill ph-globe-hemisphere-west"></i> FAO India</div>
+                <div class="trusted-logo"><i class="ph-fill ph-seal-check"></i> AgriTech Fund</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-badge">Features</div>
+                <h2 class="section-title">Everything Your <span class="gradient-text">Farm Needs</span></h2>
+                <p class="section-subtitle">From AI crop recommendations to direct marketplace access — AgriPulse empowers every step of your farming journey.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll" style="--delay:0.1s">
+                    <div class="feature-icon" style="--accent:hsl(150,78%,40%)"><i class="ph-fill ph-leaf"></i></div>
+                    <h3>AI Crop Recommendation</h3>
+                    <p>Get personalized crop suggestions based on your soil type, climate, and market demand using advanced machine learning.</p>
+                </div>
+                <div class="feature-card animate-on-scroll" style="--delay:0.2s">
+                    <div class="feature-icon" style="--accent:hsl(348,83%,47%)"><i class="ph-fill ph-camera"></i></div>
+                    <h3>Disease Detection</h3>
+                    <p>Upload a photo of your crop and our AI instantly identifies diseases and suggests treatments with 95% accuracy.</p>
+                </div>
+                <div class="feature-card animate-on-scroll" style="--delay:0.3s">
+                    <div class="feature-icon" style="--accent:hsl(35,92%,55%)"><i class="ph-fill ph-storefront"></i></div>
+                    <h3>Direct Marketplace</h3>
+                    <p>Sell your produce directly to buyers at fair prices. No middlemen, no hassle — just fresh farm-to-table commerce.</p>
+                </div>
+                <div class="feature-card animate-on-scroll" style="--delay:0.4s">
+                    <div class="feature-icon" style="--accent:hsl(210,90%,55%)"><i class="ph-fill ph-chart-line-up"></i></div>
+                    <h3>Crop Lifecycle Tracking</h3>
+                    <p>Monitor your crop's entire journey from sowing to harvest with photo documentation and growth analytics.</p>
+                </div>
+                <div class="feature-card animate-on-scroll" style="--delay:0.5s">
+                    <div class="feature-icon" style="--accent:hsl(280,67%,55%)"><i class="ph-fill ph-shield-check"></i></div>
+                    <h3>Insurance & Loans</h3>
+                    <p>Access government-backed crop insurance and loan schemes tailored to your farm profile and crop type.</p>
+                </div>
+                <div class="feature-card animate-on-scroll" style="--delay:0.6s">
+                    <div class="feature-icon" style="--accent:hsl(180,60%,45%)"><i class="ph-fill ph-cloud-sun"></i></div>
+                    <h3>Weather Intelligence</h3>
+                    <p>Real-time weather forecasts and alerts to help you plan irrigation, harvesting, and pest management.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-section" id="how-it-works">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-badge">Process</div>
+                <h2 class="section-title">How <span class="gradient-text">AgriPulse</span> Works</h2>
+                <p class="section-subtitle">Get started in 3 simple steps and transform the way you farm.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card animate-on-scroll" style="--delay:0.1s">
+                    <div class="step-number">01</div>
+                    <div class="step-icon"><i class="ph-fill ph-user-plus"></i></div>
+                    <h3>Register Your Farm</h3>
+                    <p>Create your profile, add your land details, soil type, and location to get started with personalized services.</p>
+                </div>
+                <div class="step-connector animate-on-scroll"><i class="ph ph-arrow-right"></i></div>
+                <div class="step-card animate-on-scroll" style="--delay:0.2s">
+                    <div class="step-number">02</div>
+                    <div class="step-icon"><i class="ph-fill ph-brain"></i></div>
+                    <h3>Get AI Insights</h3>
+                    <p>Our AI analyzes your farm data and provides crop recommendations, disease detection, and weather forecasts.</p>
+                </div>
+                <div class="step-connector animate-on-scroll"><i class="ph ph-arrow-right"></i></div>
+                <div class="step-card animate-on-scroll" style="--delay:0.3s">
+                    <div class="step-number">03</div>
+                    <div class="step-icon"><i class="ph-fill ph-currency-inr"></i></div>
+                    <h3>Grow & Sell</h3>
+                    <p>Track your crops, list products on our marketplace, and connect directly with buyers for maximum profit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item animate-on-scroll"><div class="stat-number" data-target="10000">0</div><div class="stat-label">Active Farmers</div></div>
+                <div class="stat-item animate-on-scroll"><div class="stat-number" data-target="500">0</div><div class="stat-label">Villages Reached</div></div>
+                <div class="stat-item animate-on-scroll"><div class="stat-number" data-target="95">0</div><div class="stat-label">% AI Accuracy</div></div>
+                <div class="stat-item animate-on-scroll"><div class="stat-number" data-target="25000">0</div><div class="stat-label">Crops Analyzed</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portals Section -->
+    <section class="portals-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-badge">Portals</div>
+                <h2 class="section-title">One Platform, <span class="gradient-text">Three Portals</span></h2>
+                <p class="section-subtitle">Tailored experiences for every stakeholder in the agricultural ecosystem.</p>
+            </div>
+            <div class="portals-grid">
+                <div class="portal-card portal-farmer animate-on-scroll" style="--delay:0.1s">
+                    <div class="portal-icon"><i class="ph-fill ph-user"></i></div>
+                    <h3>Farmer Portal</h3>
+                    <p>Register your farm, get AI crop recommendations, track crop lifecycle, detect diseases, and sell directly on the marketplace.</p>
+                    <ul class="portal-features">
+                        <li><i class="ph-fill ph-check-circle"></i> AI Crop Recommendation</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Disease Detection</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Marketplace Listing</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Insurance & Loans</li>
+                    </ul>
+                    <a href="index.html" class="btn btn-primary">Enter Farmer Portal <i class="ph ph-arrow-right"></i></a>
+                </div>
+                <div class="portal-card portal-admin animate-on-scroll" style="--delay:0.2s">
+                    <div class="portal-icon"><i class="ph-fill ph-shield-check"></i></div>
+                    <h3>Admin Portal</h3>
+                    <p>Manage farmer accounts, verify registrations, monitor crop data, and oversee government schemes and subsidies.</p>
+                    <ul class="portal-features">
+                        <li><i class="ph-fill ph-check-circle"></i> Farmer Verification</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Crop Monitoring</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Scheme Management</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Analytics Dashboard</li>
+                    </ul>
+                    <a href="index.html" class="btn btn-secondary-solid">Enter Admin Portal <i class="ph ph-arrow-right"></i></a>
+                </div>
+                <div class="portal-card portal-buyer animate-on-scroll" style="--delay:0.3s">
+                    <div class="portal-icon"><i class="ph-fill ph-shopping-cart"></i></div>
+                    <h3>Buyer Marketplace</h3>
+                    <p>Browse fresh produce directly from farmers. Get quality crops at fair prices with complete traceability and transparency.</p>
+                    <ul class="portal-features">
+                        <li><i class="ph-fill ph-check-circle"></i> Direct from Farmers</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Quality Verified</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Fair Pricing</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Delivery Tracking</li>
+                    </ul>
+                    <a href="index.html" class="btn btn-outline-dark">Browse Marketplace <i class="ph ph-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-badge">Testimonials</div>
+                <h2 class="section-title">Voices from the <span class="gradient-text">Field</span></h2>
+                <p class="section-subtitle">Hear from farmers who transformed their lives with AgriPulse.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card animate-on-scroll" style="--delay:0.1s">
+                    <div class="testimonial-stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                    <p>"AgriPulse's AI recommendation helped me choose the right crops for my soil. My yield increased by 40% in just one season!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">RK</div>
+                        <div><strong>Rajesh Kumar</strong><span>Wheat Farmer, Punjab</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll" style="--delay:0.2s">
+                    <div class="testimonial-stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                    <p>"The disease detection feature saved my entire tomato crop. I uploaded a photo and got the treatment within seconds!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">LD</div>
+                        <div><strong>Lakshmi Devi</strong><span>Vegetable Farmer, Karnataka</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll" style="--delay:0.3s">
+                    <div class="testimonial-stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                    <p>"Direct marketplace eliminated the middlemen. I now earn 30% more on every harvest. AgriPulse changed my family's future."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SP</div>
+                        <div><strong>Suresh Patel</strong><span>Rice Farmer, Maharashtra</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <div class="cta-card animate-on-scroll">
+                <h2>Ready to <span class="gradient-text">Transform</span> Your Farm?</h2>
+                <p>Join thousands of farmers already using AgriPulse to grow smarter, sell better, and earn more.</p>
+                <div class="cta-actions">
+                    <a href="index.html" class="btn btn-primary btn-lg"><i class="ph ph-rocket-launch"></i> Start Free Today</a>
+                    <a href="#features" class="btn btn-ghost btn-lg"><i class="ph ph-info"></i> Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo"><i class="ph-fill ph-plant"></i> AgriPulse</div>
+                    <p>Empowering farmers with smart technology for a sustainable and prosperous future.</p>
+                    <div class="footer-socials">
+                        <a href="#"><i class="ph-fill ph-twitter-logo"></i></a>
+                        <a href="#"><i class="ph-fill ph-instagram-logo"></i></a>
+                        <a href="#"><i class="ph-fill ph-facebook-logo"></i></a>
+                        <a href="#"><i class="ph-fill ph-youtube-logo"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Platform</h4>
+                    <a href="#features">Features</a>
+                    <a href="index.html">Farmer Portal</a>
+                    <a href="index.html">Admin Portal</a>
+                    <a href="index.html">Marketplace</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Access</a>
+                    <a href="#">Community</a>
+                    <a href="#">Support</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AgriPulse. All rights reserved. Built with <i class="ph-fill ph-heart" style="color:hsl(348,83%,47%)"></i> for Indian Farmers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="landing.js"></script>
+</body>
+</html>
