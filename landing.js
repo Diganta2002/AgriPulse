@@ -139,3 +139,112 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// ===== Hero Image Slideshow & Floating Data Rotation =====
+(function () {
+    const heroImg = document.getElementById('hero-slideshow-img');
+    if (!heroImg) return;
+
+    // Slideshow images
+    const slides = [
+        'hero_bg.png',
+        'farming_rice_paddy.png',
+        'farming_wheat_harvest.png',
+        'farming_vegetables.png',
+        'farming_drone_tech.png'
+    ];
+
+    // Floating data sets — one per slide
+    const floatData = [
+        {
+            card1: { icon: 'ph-fill ph-plant', title: 'Crop Health', value: 'Optimal ✓', color: 'hsl(150,78%,40%)' },
+            card2: { icon: 'ph-fill ph-drop', title: 'Soil Moisture', value: '48% Good', color: 'hsl(210,90%,55%)' },
+            card3: { icon: 'ph-fill ph-sun', title: 'Weather AI', value: 'Clear Skies', color: 'hsl(35,92%,55%)' }
+        },
+        {
+            card1: { icon: 'ph-fill ph-grain', title: 'Rice Yield', value: '5.2 T/ha', color: 'hsl(120,60%,40%)' },
+            card2: { icon: 'ph-fill ph-thermometer', title: 'Temperature', value: '28°C Warm', color: 'hsl(15,85%,55%)' },
+            card3: { icon: 'ph-fill ph-cloud-rain', title: 'Rainfall', value: '120mm/mo', color: 'hsl(200,80%,50%)' }
+        },
+        {
+            card1: { icon: 'ph-fill ph-wheat', title: 'Wheat Quality', value: 'Grade A+', color: 'hsl(45,90%,45%)' },
+            card2: { icon: 'ph-fill ph-chart-line-up', title: 'Market Price', value: '₹2,450/Q', color: 'hsl(150,78%,40%)' },
+            card3: { icon: 'ph-fill ph-wind', title: 'Wind Speed', value: '12 km/h', color: 'hsl(210,70%,55%)' }
+        },
+        {
+            card1: { icon: 'ph-fill ph-leaf', title: 'Organic Score', value: '98% Pure', color: 'hsl(130,65%,42%)' },
+            card2: { icon: 'ph-fill ph-drop-half-bottom', title: 'Irrigation', value: 'Drip Active', color: 'hsl(195,85%,48%)' },
+            card3: { icon: 'ph-fill ph-bug', title: 'Pest Alert', value: 'No Threats', color: 'hsl(150,78%,40%)' }
+        },
+        {
+            card1: { icon: 'ph-fill ph-drone', title: 'Drone Scan', value: '92% Done', color: 'hsl(260,60%,55%)' },
+            card2: { icon: 'ph-fill ph-wifi-high', title: 'IoT Sensors', value: '24 Active', color: 'hsl(180,60%,45%)' },
+            card3: { icon: 'ph-fill ph-chart-bar', title: 'Growth Rate', value: '+18% ↑', color: 'hsl(150,78%,40%)' }
+        }
+    ];
+
+    let currentSlide = 0;
+    const INTERVAL = 25000; // 25 seconds
+
+    function updateFloatCard(cardNum, data) {
+        const title = document.getElementById('float-title-' + cardNum);
+        const value = document.getElementById('float-value-' + cardNum);
+        const icon = document.getElementById('float-icon-' + cardNum);
+        const card = document.getElementById('float-card-' + cardNum);
+
+        if (!title || !value || !icon || !card) return;
+
+        // Fade out card
+        card.style.opacity = '0';
+        card.style.transform = 'scale(0.9)';
+
+        setTimeout(() => {
+            title.textContent = data.title;
+            value.textContent = data.value;
+            value.style.color = data.color;
+            icon.className = data.icon;
+            icon.parentElement.style.color = data.color;
+            icon.parentElement.style.background = data.color.replace(')', ',0.15)').replace('hsl', 'hsla');
+
+            // Fade in card
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+        }, 400);
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        const data = floatData[currentSlide];
+
+        // Crossfade image
+        heroImg.style.opacity = '0';
+        heroImg.style.transform = 'scale(1.05)';
+
+        setTimeout(() => {
+            heroImg.src = slides[currentSlide];
+            heroImg.style.opacity = '1';
+            heroImg.style.transform = 'scale(1)';
+        }, 600);
+
+        // Update floating cards with staggered delay
+        updateFloatCard(1, data.card1);
+        setTimeout(() => updateFloatCard(2, data.card2), 200);
+        setTimeout(() => updateFloatCard(3, data.card3), 400);
+    }
+
+    // Add CSS transitions to hero img and float cards
+    heroImg.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    for (let i = 1; i <= 3; i++) {
+        const card = document.getElementById('float-card-' + i);
+        if (card) card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    }
+
+    // Preload all images
+    slides.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+
+    // Start the slideshow
+    setInterval(nextSlide, INTERVAL);
+})();
