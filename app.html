@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriPulse | Smart Farming Ecosystem</title>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css?v=5">
+</head>
+<body>
+    <div id="app-container">
+        
+        <!-- View: Landing Page -->
+        <main id="view-landing" class="view active">
+            <header style="padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; position: absolute; width: 100%; top: 0; z-index: 10;">
+                <div style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="ph-fill ph-plant" style="color: var(--primary);"></i> AgriPulse
+                </div>
+                <!-- Theme toggle switch component could go here -->
+                <button class="btn btn-outline" onclick="toggleTheme()" id="theme-btn">
+                    <i class="ph ph-moon"></i> Theme
+                </button>
+            </header>
+            
+            <section class="landing-hero" style="display: flex; flex-direction: row; text-align: left; max-width: 1400px; margin: 0 auto; gap: 4rem; padding-top: 6rem;">
+                <div class="animate-fade-in" style="flex: 1; display: flex; flex-direction: column; justify-content: center; z-index: 2;">
+                    <h1 class="hero-title" style="font-size: clamp(3rem, 5vw, 5rem);">Cultivating the Future <br> with <span class="gradient-text">AgriPulse</span></h1>
+                    <p class="hero-subtitle delay-1" style="max-width: 100%;">The all-in-one platform connecting farmers, buyers, and administrators through smart agricultural technology.</p>
+                    <div class="hero-actions delay-2" style="justify-content: flex-start;">
+                        <button class="btn btn-primary glass-panel" onclick="navigateTo('view-login', 'farmer')">
+                            <i class="ph ph-user"></i> Farmer Portal
+                        </button>
+                        <button class="btn btn-secondary glass-panel" onclick="navigateTo('view-login', 'admin')">
+                            <i class="ph ph-shield-check"></i> Admin Portal
+                        </button>
+                        <button class="btn btn-outline glass-panel" onclick="navigateToMarketplaceAsBuyer()">
+                            <i class="ph ph-storefront"></i> Marketplace
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hero-image-container delay-3 animate-fade-in" style="flex: 1; display: flex; align-items: center; justify-content: center; position: relative; z-index: 2;">
+                    <div class="interactive-image-wrapper">
+                        <img src="hero_bg.png" alt="Smart Agriculture" class="hero-interactive-img">
+                        
+                        <!-- Floating interacting elements -->
+                        <div class="float-badge float-up" style="top: 10%; right: -20px; animation-delay: 0.5s;">
+                            <i class="ph-fill ph-plant" style="color: var(--success); font-size: 1.5rem;"></i>
+                            <div>
+                                <strong style="display: block; font-size: 0.8rem; line-height: 1;">Crop Health</strong>
+                                <span style="font-size: 0.7rem; color: var(--success);">Optimal</span>
+                            </div>
+                        </div>
+                        
+                        <div class="float-badge float-down" style="bottom: 15%; left: -30px; animation-delay: 1.2s;">
+                            <i class="ph-fill ph-drop" style="color: #2196F3; font-size: 1.5rem;"></i>
+                            <div>
+                                <strong style="display: block; font-size: 0.8rem; line-height: 1;">Soil Moisture</strong>
+                                <span style="font-size: 0.7rem; color: #2196F3;">48% (Good)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="float-badge float-up" style="top: 60%; right: -40px; animation-delay: 2.1s;">
+                            <i class="ph-fill ph-sun" style="color: var(--warning); font-size: 1.5rem;"></i>
+                            <div>
+                                <strong style="display: block; font-size: 0.8rem; line-height: 1;">Weather AI</strong>
+                                <span style="font-size: 0.7rem; color: var(--text-muted);">Clear Skies</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- View: Login / Signup -->
+        <main id="view-login" class="view">
+            <div class="login-container">
+                <button style="position: absolute; top: 2rem; left: 2rem; font-size: 2rem; color: var(--text-main);" onclick="navigateTo('view-landing')">
+                    <i class="ph ph-arrow-left"></i>
+                </button>
+                <div class="login-card glass-panel animate-fade-in">
+                    <div style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;">
+                        <i class="ph-fill ph-plant"></i>
+                    </div>
+                    <h2 id="login-title">Welcome Back</h2>
+                    <p id="login-subtitle">Sign in to your farmer account</p>
+                    
+                    <div class="auth-tabs" id="auth-tabs-container">
+                        <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+                        <button class="auth-tab" onclick="switchAuthTab('register')">Register</button>
+                    </div>
+
+                    <form id="auth-form" onsubmit="handleAuth(event)">
+                        <div id="register-fields" style="display: none;">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" class="form-control" placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
+                                <label>ID Proof (Aadhar/PAN)</label>
+                                <input type="text" class="form-control" placeholder="ID Number">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" class="form-control" placeholder="10-digit mobile number" required>
+                        </div>
+                        <div class="form-group" id="otp-group" style="display: none;">
+                            <label>OTP</label>
+                            <input type="text" class="form-control" placeholder="Enter OTP">
+                        </div>
+                        <button type="button" id="btn-otp" class="btn btn-outline" style="width: 100%; margin-bottom: 1rem; border-radius: var(--radius-md);" onclick="sendOTP()">Send OTP</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; border-radius: var(--radius-md);">Authenticate</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <!-- View: Farmer Dashboard -->
+        <main id="view-farmer" class="view dashboard">
+            <aside class="sidebar">
+                <div class="sidebar-logo">
+                    <i class="ph-fill ph-plant"></i> AgriPulse
+                </div>
+                <nav class="nav-menu">
+                    <div class="nav-item active" onclick="switchFarmerTab('dashboard')">
+                        <i class="ph ph-squares-four"></i> Dashboard
+                    </div>
+                    <div class="nav-item" onclick="switchFarmerTab('registration')">
+                        <i class="ph ph-map-pin"></i> Farm Registration
+                    </div>
+                    <div class="nav-item" onclick="switchFarmerTab('recommendation')">
+                        <i class="ph ph-leaf"></i> Recommendation
+                    </div>
+                    <div class="nav-item" onclick="switchFarmerTab('lifecycle')">
+                        <i class="ph ph-camera"></i> Crop Lifecycle
+                    </div>
+                    <div class="nav-item" onclick="switchFarmerTab('marketplace-upload')">
+                        <i class="ph ph-storefront"></i> Marketplace
+                    </div>
+                    <div class="nav-item" onclick="switchFarmerTab('insurance')">
+                        <i class="ph ph-shield-check"></i> Insurance/Loan
+                    </div>
+                    <div style="flex: 1"></div>
+                    <div class="nav-item" style="color: var(--danger)" onclick="logout()">
+                        <i class="ph ph-sign-out"></i> Logout
+                    </div>
+                </nav>
+            </aside>
+            <div class="dashboard-main">
+                <header class="topbar">
+                    <h3 style="font-weight: 500;">Farmer Portal</h3>
+                    <div class="user-profile">
+                        <span style="font-weight: 500;">John Doe</span>
+                        <div class="avatar">JD</div>
+                    </div>
+                </header>
+                
+                <div class="content-area" id="farmer-content">
+                    <!-- Dynamic content injected by app.js -->
+                </div>
+            </div>
+        </main>
+
+        <!-- View: Admin Dashboard -->
+        <main id="view-admin" class="view dashboard">
+            <aside class="sidebar" style="border-right-color: var(--secondary);">
+                <div class="sidebar-logo">
+                    <i class="ph-fill ph-shield-check" style="color: var(--secondary);"></i> AdminPulse
+                </div>
+                <nav class="nav-menu">
+                    <div class="nav-item active" onclick="switchAdminTab('dashboard')">
+                        <i class="ph ph-squares-four"></i> Overview
+                    </div>
+                    <div class="nav-item" onclick="switchAdminTab('farmers')">
+                        <i class="ph ph-users"></i> Manage Farmers
+                    </div>
+                    <div class="nav-item" onclick="switchAdminTab('verification')">
+                        <i class="ph ph-file-text"></i> Verification
+                    </div>
+                    <div class="nav-item" onclick="switchAdminTab('monitoring')">
+                        <i class="ph ph-chart-line-up"></i> Crop Data
+                    </div>
+                    <div class="nav-item" onclick="switchAdminTab('schemes')">
+                        <i class="ph ph-bank"></i> Schemes Data
+                    </div>
+                    <div style="flex: 1"></div>
+                    <div class="nav-item" style="color: var(--danger)" onclick="logout()">
+                        <i class="ph ph-sign-out"></i> Logout
+                    </div>
+                </nav>
+            </aside>
+            <div class="dashboard-main">
+                <header class="topbar">
+                    <h3 style="font-weight: 500;">Admin Platform</h3>
+                    <div class="user-profile">
+                        <span style="font-weight: 500;">System Admin</span>
+                        <div class="avatar" style="background: var(--secondary); color: white;">A</div>
+                    </div>
+                </header>
+                
+                <div class="content-area" id="admin-content">
+                    <!-- Dynamic content injected by app.js -->
+                </div>
+            </div>
+        </main>
+
+        <!-- View: Buyer Marketplace -->
+        <main id="view-marketplace-buyer" class="view">
+             <header class="topbar" style="position: sticky; top: 0; z-index: 10;">
+                <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; cursor: pointer;" onclick="navigateTo('view-landing')">
+                    <i class="ph-fill ph-plant" style="color: var(--primary);"></i> AgriMarket
+                </div>
+                <div style="display:flex; gap: 1rem; align-items: center;">
+                    <div class="btn btn-outline" style="padding: 0.5rem 1rem;">
+                        <i class="ph ph-shopping-cart"></i> Cart (0)
+                    </div>
+                    <div class="avatar">B</div>
+                </div>
+            </header>
+            <div class="content-area" style="max-width: 1200px; margin: 0 auto; padding-top: 3rem;">
+                <div class="page-header">
+                    <h2 class="page-title">Fresh Produce from Farmers</h2>
+                    <p style="color: var(--text-muted)">Connect directly with local farmers and buy fresh, high-quality crops.</p>
+                </div>
+                
+                <div class="marketplace-grid" id="public-marketplace-grid">
+                    <!-- Products -->
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Templates for Farmer/Admin tabs will be handled in app.js -->
+    <script src="app.js?v=2"></script>
+</body>
+</html>
