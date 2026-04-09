@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,21 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: hsl(150, 78%, 40%);
-            --primary-hover: hsl(150, 78%, 35%);
-            --primary-glow: hsla(150, 78%, 40%, 0.3);
-            --primary-light: hsl(150, 78%, 55%);
+            --primary: hsl(150, 78%, 38%);
+            --primary-hover: hsl(150, 78%, 32%);
+            --primary-glow: hsla(150, 78%, 40%, 0.15);
+            --primary-light: hsl(150, 78%, 45%);
             --secondary: hsl(35, 92%, 55%);
             --secondary-hover: hsl(35, 92%, 50%);
-            --secondary-glow: hsla(35, 92%, 55%, 0.35);
+            --secondary-glow: hsla(35, 92%, 55%, 0.2);
             --accent: hsl(280, 67%, 55%);
-            --bg-dark: hsl(222, 47%, 6%);
-            --bg-dark-2: hsl(217, 33%, 10%);
-            --surface: hsla(217, 33%, 14%, 0.6);
-            --surface-hover: hsl(217, 33%, 20%);
-            --text-main: hsl(210, 40%, 98%);
-            --text-muted: hsl(215, 20%, 65%);
-            --border: hsla(215, 20%, 65%, 0.15);
+            --bg-main: hsl(140, 20%, 97%);
+            --bg-alt: hsl(140, 15%, 94%);
+            --surface: hsla(0, 0%, 100%, 0.85);
+            --surface-hover: hsl(140, 10%, 96%);
+            --text-main: hsl(220, 30%, 15%);
+            --text-muted: hsl(215, 15%, 50%);
+            --border: hsla(150, 20%, 40%, 0.12);
             --danger: hsl(348, 83%, 47%);
             --font-heading: 'Fraunces', Georgia, serif;
             --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
@@ -34,7 +34,7 @@
             --radius-xl: 1.5rem;
             --radius-2xl: 2rem;
             --radius-full: 9999px;
-            --shadow-glow: 0 0 40px var(--primary-glow);
+            --shadow-card: 0 8px 40px hsla(150, 30%, 30%, 0.08);
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -44,7 +44,7 @@
 
         body {
             font-family: var(--font-body);
-            background: var(--bg-dark);
+            background: var(--bg-main);
             color: var(--text-main);
             overflow: hidden;
         }
@@ -57,9 +57,9 @@
             content: '';
             position: absolute; inset: -50%;
             background: 
-                radial-gradient(ellipse 600px 600px at 15% 20%, hsla(150, 78%, 30%, 0.22) 0%, transparent 70%),
-                radial-gradient(ellipse 500px 500px at 85% 75%, hsla(120, 60%, 40%, 0.12) 0%, transparent 70%),
-                radial-gradient(ellipse 400px 400px at 50% 50%, hsla(35, 92%, 55%, 0.08) 0%, transparent 70%);
+                radial-gradient(ellipse 600px 600px at 15% 20%, hsla(150, 78%, 50%, 0.1) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 500px at 85% 75%, hsla(120, 60%, 50%, 0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 400px at 50% 50%, hsla(35, 92%, 60%, 0.05) 0%, transparent 70%);
             animation: bgPulse 12s ease-in-out infinite alternate;
         }
         @keyframes bgPulse {
@@ -71,8 +71,8 @@
         .bg-grid {
             position: fixed; inset: 0; z-index: 0;
             background-image: 
-                linear-gradient(hsla(215, 20%, 65%, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, hsla(215, 20%, 65%, 0.03) 1px, transparent 1px);
+                linear-gradient(hsla(150, 30%, 40%, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, hsla(150, 30%, 40%, 0.04) 1px, transparent 1px);
             background-size: 60px 60px;
         }
 
@@ -83,19 +83,19 @@
         }
         .orb-1 {
             width: 300px; height: 300px;
-            background: hsla(150, 78%, 40%, 0.18);
+            background: hsla(150, 78%, 50%, 0.08);
             top: 10%; right: 15%;
             animation: orbFloat1 18s ease-in-out infinite;
         }
         .orb-2 {
             width: 250px; height: 250px;
-            background: hsla(120, 60%, 35%, 0.12);
+            background: hsla(120, 60%, 45%, 0.06);
             bottom: 20%; left: 10%;
             animation: orbFloat2 22s ease-in-out infinite;
         }
         .orb-3 {
             width: 200px; height: 200px;
-            background: hsla(35, 92%, 55%, 0.1);
+            background: hsla(35, 92%, 60%, 0.06);
             top: 60%; right: 50%;
             animation: orbFloat3 15s ease-in-out infinite;
         }
@@ -106,7 +106,7 @@
         /* Floating Leaves */
         .leaf {
             position: absolute; z-index: 0;
-            font-size: 1.5rem; opacity: 0.07;
+            font-size: 1.5rem; opacity: 0.12;
             color: var(--primary);
             animation: leafFall linear infinite;
         }
@@ -119,8 +119,8 @@
 
         @keyframes leafFall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.07; }
-            90% { opacity: 0.07; }
+            10% { opacity: 0.12; }
+            90% { opacity: 0.12; }
             100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
         }
 
@@ -140,23 +140,25 @@
             border: 1px solid var(--border); color: var(--text-muted);
             font-family: var(--font-ui); font-size: 0.875rem; font-weight: 500;
             text-decoration: none; transition: all var(--transition);
+            box-shadow: 0 2px 8px hsla(0, 0%, 0%, 0.04);
         }
         .back-btn i { font-size: 1.1rem; }
         .back-btn:hover {
-            color: var(--text-main); border-color: var(--primary);
-            background: hsla(150, 78%, 40%, 0.08);
-            box-shadow: 0 0 20px hsla(150, 78%, 40%, 0.1);
+            color: var(--primary); border-color: var(--primary);
+            background: hsla(150, 78%, 40%, 0.06);
+            box-shadow: 0 4px 16px hsla(150, 78%, 40%, 0.1);
         }
 
         /* ===== LOGIN CARD ===== */
         .login-card {
             width: 100%; max-width: 460px;
-            background: hsla(217, 33%, 12%, 0.7);
+            background: hsla(0, 0%, 100%, 0.9);
             backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
             border: 1px solid var(--border);
             border-radius: var(--radius-2xl);
             padding: 3rem;
             position: relative; overflow: hidden;
+            box-shadow: 0 8px 40px hsla(150, 30%, 30%, 0.06), 0 1px 3px hsla(0, 0%, 0%, 0.04);
             animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0; transform: translateY(30px) scale(0.97);
         }
@@ -168,7 +170,7 @@
         .login-card::before {
             content: ''; position: absolute; top: -1px; left: -1px; right: -1px; bottom: -1px;
             border-radius: var(--radius-2xl);
-            background: linear-gradient(135deg, hsla(150, 78%, 40%, 0.3), transparent 40%, transparent 60%, hsla(120, 60%, 40%, 0.2));
+            background: linear-gradient(135deg, hsla(150, 78%, 40%, 0.15), transparent 40%, transparent 60%, hsla(120, 60%, 40%, 0.1));
             z-index: -1; opacity: 0;
             transition: opacity 0.5s ease;
         }
@@ -181,14 +183,14 @@
         .login-icon-wrapper {
             width: 80px; height: 80px; margin: 0 auto 1.5rem;
             border-radius: var(--radius-xl);
-            background: linear-gradient(135deg, hsla(150, 78%, 40%, 0.15), hsla(150, 78%, 40%, 0.05));
-            border: 1px solid hsla(150, 78%, 40%, 0.2);
+            background: linear-gradient(135deg, hsla(150, 78%, 45%, 0.1), hsla(150, 78%, 45%, 0.04));
+            border: 1px solid hsla(150, 78%, 40%, 0.12);
             display: flex; align-items: center; justify-content: center;
             position: relative;
             animation: iconPulse 3s ease-in-out infinite;
         }
         @keyframes iconPulse {
-            0%, 100% { box-shadow: 0 0 0 0 hsla(150, 78%, 40%, 0.2); }
+            0%, 100% { box-shadow: 0 0 0 0 hsla(150, 78%, 40%, 0.12); }
             50% { box-shadow: 0 0 0 12px hsla(150, 78%, 40%, 0); }
         }
         .login-icon-wrapper i {
@@ -211,8 +213,8 @@
         .security-badge {
             display: inline-flex; align-items: center; gap: 0.4rem;
             padding: 0.35rem 0.8rem; border-radius: var(--radius-full);
-            background: hsla(150, 78%, 40%, 0.08);
-            border: 1px solid hsla(150, 78%, 40%, 0.15);
+            background: hsla(150, 78%, 45%, 0.08);
+            border: 1px solid hsla(150, 78%, 40%, 0.12);
             color: var(--primary); font-size: 0.75rem; font-weight: 600;
             font-family: var(--font-ui); text-transform: uppercase;
             letter-spacing: 0.05em; margin-bottom: 1.25rem;
@@ -239,16 +241,16 @@
         }
         .form-input {
             width: 100%; padding: 0.9rem 1rem 0.9rem 2.8rem;
-            background: hsla(217, 33%, 14%, 0.5);
+            background: hsla(150, 20%, 97%, 0.8);
             border: 1.5px solid var(--border);
             border-radius: var(--radius-lg); color: var(--text-main);
             font-family: var(--font-body); font-size: 0.95rem;
             transition: all var(--transition); outline: none;
         }
-        .form-input::placeholder { color: hsla(215, 20%, 65%, 0.5); }
+        .form-input::placeholder { color: hsla(215, 15%, 50%, 0.6); }
         .form-input:focus {
             border-color: var(--primary);
-            background: hsla(217, 33%, 16%, 0.6);
+            background: #fff;
             box-shadow: 0 0 0 4px hsla(150, 78%, 40%, 0.08);
         }
         .input-wrapper:focus-within i.input-icon { color: var(--primary); }
@@ -381,15 +383,15 @@
         @keyframes msgSlide { from { opacity: 0; transform: translateY(-8px); } }
         .status-msg.error {
             display: flex;
-            background: hsla(348, 83%, 47%, 0.1);
-            border: 1px solid hsla(348, 83%, 47%, 0.2);
-            color: hsl(348, 83%, 65%);
+            background: hsla(348, 83%, 47%, 0.06);
+            border: 1px solid hsla(348, 83%, 47%, 0.15);
+            color: hsl(348, 83%, 42%);
         }
         .status-msg.success {
             display: flex;
-            background: hsla(150, 78%, 40%, 0.1);
-            border: 1px solid hsla(150, 78%, 40%, 0.2);
-            color: hsl(150, 78%, 60%);
+            background: hsla(150, 78%, 40%, 0.06);
+            border: 1px solid hsla(150, 78%, 40%, 0.15);
+            color: hsl(150, 78%, 32%);
         }
 
         /* ===== FEATURES STRIP ===== */
@@ -397,8 +399,9 @@
             position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
             z-index: 10; display: flex; gap: 2rem;
             padding: 0.75rem 2rem; border-radius: var(--radius-full);
-            background: hsla(217, 33%, 12%, 0.6);
+            background: hsla(0, 0%, 100%, 0.85);
             backdrop-filter: blur(20px); border: 1px solid var(--border);
+            box-shadow: 0 4px 20px hsla(0, 0%, 0%, 0.05);
             animation: stripSlide 1s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0; transform: translateX(-50%) translateY(20px);
         }
